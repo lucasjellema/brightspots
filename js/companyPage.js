@@ -23,8 +23,9 @@ function populateCompanySelector(data) {
         companySelector.remove(1);
     }
     
-    // Get unique companies and sort alphabetically
-    const companies = [...new Set(data.rawData.map(row => row['Jouw bedrijf']).filter(Boolean))].sort();
+    // Get unique companies and sort alphabetically (case-insensitive)
+    const companies = [...new Set(data.rawData.map(row => row['Jouw bedrijf']).filter(Boolean))]
+        .sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase()));
     
     // Add options for each company
     companies.forEach(company => {
