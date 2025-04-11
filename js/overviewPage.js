@@ -174,25 +174,33 @@ function renderTopChallengesChart(data) {
                 label: 'Strong Interest',
                 data: topChallenges.map(challenge => challenge.interestCounts['Sterke, concrete interesse']),
                 backgroundColor: '#e74c3c',
-                borderWidth: 1
+                borderWidth: 1,
+                companiesByChallenge: topChallenges.map(challenge => 
+                    challenge.companiesWithInterest['Sterke, concrete interesse'] || [])
             },
             {
                 label: 'Reasonable Interest',
                 data: topChallenges.map(challenge => challenge.interestCounts['Redelijke interesse']),
                 backgroundColor: '#3498db',
-                borderWidth: 1
+                borderWidth: 1,
+                companiesByChallenge: topChallenges.map(challenge => 
+                    challenge.companiesWithInterest['Redelijke interesse'] || [])
             },
             {
                 label: 'Vague Interest',
                 data: topChallenges.map(challenge => challenge.interestCounts['Vage interesse']),
                 backgroundColor: '#f39c12',
-                borderWidth: 1
+                borderWidth: 1,
+                companiesByChallenge: topChallenges.map(challenge => 
+                    challenge.companiesWithInterest['Vage interesse'] || [])
             },
             {
                 label: 'Nothing Heard',
                 data: topChallenges.map(challenge => challenge.interestCounts['Niets over gehoord']),
                 backgroundColor: '#95a5a6',
-                borderWidth: 1
+                borderWidth: 1,
+                companiesByChallenge: topChallenges.map(challenge => 
+                    challenge.companiesWithInterest['Niets over gehoord'] || [])
             }
         ]
     };
@@ -230,11 +238,35 @@ function renderTopChallengesChart(data) {
                     text: 'Top 5 Challenges by Interest Level'
                 },
                 tooltip: {
-                    mode: 'index',
-                    intersect: false
+                    mode: 'point',  // Changed from 'index' to 'point' to only show the hovered item
+                    intersect: true, // Changed to true to ensure we're only showing data for the hovered element
+                    callbacks: {
+                        // Completely replace the title and label with just the challenge name
+                        title: function(tooltipItems) {
+                            return tooltipItems[0].label; // Just show the challenge name
+                        },
+                        label: function(tooltipItem) {
+                            // Don't show the dataset label or value
+                            return null;
+                        },
+                        afterLabel: function(tooltipItem) {
+                            // Get the companies for this challenge and interest level
+                            const datasetIndex = tooltipItem.datasetIndex;
+                            const index = tooltipItem.dataIndex;
+                            
+                            const companies = chartData.datasets[datasetIndex].companiesByChallenge[index];
+                            
+                            if (!companies || companies.length === 0) {
+                                return 'No companies';
+                            }
+                            
+                            // Return a formatted list of companies
+                            return companies.map(company => `${company}`).join('\n'); 
+                        }
+                    }
                 },
                 legend: {
-                    position: 'bottom'
+                    display: false // Hide the legend
                 }
             }
         }
