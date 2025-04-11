@@ -186,26 +186,27 @@ function renderProductsTable(data) {
                     <tr>
                         <td>${product.name}</td>
                         <td>
-                            ${product.interestCounts['Sterke, concrete interesse']} 
                             <span class="percentage-tooltip" ${storeCompanyData(strongInterestCompanies)}>
+                            <span class="percentage-tooltip" ${storeCompanyData(strongInterestCompanies)}>
+                            ${product.interestCounts['Sterke, concrete interesse']} 
                                 (${Math.round(product.interestCounts['Sterke, concrete interesse'] / product.totalResponses * 100)}%)
                             </span>
                         </td>
                         <td>
-                            ${product.interestCounts['Redelijke interesse']} 
                             <span class="percentage-tooltip" ${storeCompanyData(reasonableInterestCompanies)}>
+                            ${product.interestCounts['Redelijke interesse']} 
                                 (${Math.round(product.interestCounts['Redelijke interesse'] / product.totalResponses * 100)}%)
                             </span>
                         </td>
                         <td>
-                            ${product.interestCounts['Vage interesse']} 
                             <span class="percentage-tooltip" ${storeCompanyData(vagueInterestCompanies)}>
+                            ${product.interestCounts['Vage interesse']} 
                                 (${Math.round(product.interestCounts['Vage interesse'] / product.totalResponses * 100)}%)
                             </span>
                         </td>
                         <td>
-                            ${product.interestCounts['Niets over gehoord']} 
                             <span class="percentage-tooltip" ${storeCompanyData(nothingHeardCompanies)}>
+                            ${product.interestCounts['Niets over gehoord']} 
                                 (${Math.round(product.interestCounts['Niets over gehoord'] / product.totalResponses * 100)}%)
                             </span>
                         </td>

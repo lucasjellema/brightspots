@@ -214,25 +214,47 @@ export function processData(rawData) {
         // Count interest levels
         const interestCounts = countInterestLevels(rawData, column);
         
-        // Collect companies with their interest levels for this challenge
+        // Collect companies with their highest interest levels for this challenge
         const companiesWithInterest = {};
+        
+        // Define interest level hierarchy (highest to lowest)
+        const interestLevels = [
+            'Sterke, concrete interesse',
+            'Redelijke interesse',
+            'Vage interesse',
+            'Niets over gehoord'
+        ];
+        
+        // Track highest interest level per company
+        const companyHighestInterest = {};
+        
+        // First pass: find highest interest level per company
         rawData.forEach(row => {
             const company = row['Jouw bedrijf'];
             const interestLevel = row[column];
-            if (company && interestLevel) {
-                if (!companiesWithInterest[interestLevel]) {
-                    companiesWithInterest[interestLevel] = [];
-                }
-                if (!companiesWithInterest[interestLevel].includes(company)) {
-                    companiesWithInterest[interestLevel].push(company);
-                }
+            
+            if (!company || !interestLevel) return;
+            
+            // If this is the first response from this company, or if this response has a higher interest level
+            if (!companyHighestInterest[company] || 
+                interestLevels.indexOf(interestLevel) < interestLevels.indexOf(companyHighestInterest[company])) {
+                companyHighestInterest[company] = interestLevel;
             }
         });
+        
+        // Second pass: organize companies by their highest interest level
+        for (const company in companyHighestInterest) {
+            const highestInterest = companyHighestInterest[company];
+            if (!companiesWithInterest[highestInterest]) {
+                companiesWithInterest[highestInterest] = [];
+            }
+            companiesWithInterest[highestInterest].push(company);
+        }
         
         return {
             name: challengeName,
             interestCounts,
-            totalResponses: rawData.length,
+            totalResponses: companies.length, // Count unique companies instead of all responses
             averageInterestScore: calculateAverageInterestScore(interestCounts),
             companiesWithInterest
         };
@@ -250,25 +272,47 @@ export function processData(rawData) {
         // Count interest levels
         const interestCounts = countInterestLevels(rawData, column);
         
-        // Collect companies with their interest levels for this technology
+        // Collect companies with their highest interest levels for this technology
         const companiesWithInterest = {};
+        
+        // Define interest level hierarchy (highest to lowest)
+        const interestLevels = [
+            'Sterke, concrete interesse',
+            'Redelijke interesse',
+            'Vage interesse',
+            'Niets over gehoord'
+        ];
+        
+        // Track highest interest level per company
+        const companyHighestInterest = {};
+        
+        // First pass: find highest interest level per company
         rawData.forEach(row => {
             const company = row['Jouw bedrijf'];
             const interestLevel = row[column];
-            if (company && interestLevel) {
-                if (!companiesWithInterest[interestLevel]) {
-                    companiesWithInterest[interestLevel] = [];
-                }
-                if (!companiesWithInterest[interestLevel].includes(company)) {
-                    companiesWithInterest[interestLevel].push(company);
-                }
+            
+            if (!company || !interestLevel) return;
+            
+            // If this is the first response from this company, or if this response has a higher interest level
+            if (!companyHighestInterest[company] || 
+                interestLevels.indexOf(interestLevel) < interestLevels.indexOf(companyHighestInterest[company])) {
+                companyHighestInterest[company] = interestLevel;
             }
         });
+        
+        // Second pass: organize companies by their highest interest level
+        for (const company in companyHighestInterest) {
+            const highestInterest = companyHighestInterest[company];
+            if (!companiesWithInterest[highestInterest]) {
+                companiesWithInterest[highestInterest] = [];
+            }
+            companiesWithInterest[highestInterest].push(company);
+        }
         
         return {
             name: technologyName,
             interestCounts,
-            totalResponses: rawData.length,
+            totalResponses: companies.length, // Count unique companies instead of all responses
             averageInterestScore: calculateAverageInterestScore(interestCounts),
             companiesWithInterest
         };
@@ -286,25 +330,47 @@ export function processData(rawData) {
         // Count interest levels
         const interestCounts = countInterestLevels(rawData, column);
         
-        // Collect companies with their interest levels for this product
+        // Collect companies with their highest interest levels for this product
         const companiesWithInterest = {};
+        
+        // Define interest level hierarchy (highest to lowest)
+        const interestLevels = [
+            'Sterke, concrete interesse',
+            'Redelijke interesse',
+            'Vage interesse',
+            'Niets over gehoord'
+        ];
+        
+        // Track highest interest level per company
+        const companyHighestInterest = {};
+        
+        // First pass: find highest interest level per company
         rawData.forEach(row => {
             const company = row['Jouw bedrijf'];
             const interestLevel = row[column];
-            if (company && interestLevel) {
-                if (!companiesWithInterest[interestLevel]) {
-                    companiesWithInterest[interestLevel] = [];
-                }
-                if (!companiesWithInterest[interestLevel].includes(company)) {
-                    companiesWithInterest[interestLevel].push(company);
-                }
+            
+            if (!company || !interestLevel) return;
+            
+            // If this is the first response from this company, or if this response has a higher interest level
+            if (!companyHighestInterest[company] || 
+                interestLevels.indexOf(interestLevel) < interestLevels.indexOf(companyHighestInterest[company])) {
+                companyHighestInterest[company] = interestLevel;
             }
         });
+        
+        // Second pass: organize companies by their highest interest level
+        for (const company in companyHighestInterest) {
+            const highestInterest = companyHighestInterest[company];
+            if (!companiesWithInterest[highestInterest]) {
+                companiesWithInterest[highestInterest] = [];
+            }
+            companiesWithInterest[highestInterest].push(company);
+        }
         
         return {
             name: productName,
             interestCounts,
-            totalResponses: rawData.length,
+            totalResponses: companies.length, // Count unique companies instead of all responses
             averageInterestScore: calculateAverageInterestScore(interestCounts),
             companiesWithInterest
         };
@@ -346,7 +412,7 @@ export function processData(rawData) {
     };
 }
 
-// Helper function to count interest levels for a column
+// Helper function to count interest levels for a column, counting only the highest interest level per company
 function countInterestLevels(data, column) {
     const counts = {
         'Sterke, concrete interesse': 0,
@@ -355,12 +421,36 @@ function countInterestLevels(data, column) {
         'Niets over gehoord': 0
     };
     
+    // Define interest level hierarchy (highest to lowest)
+    const interestLevels = [
+        'Sterke, concrete interesse',
+        'Redelijke interesse',
+        'Vage interesse',
+        'Niets over gehoord'
+    ];
+    
+    // Track highest interest level per company
+    const companyHighestInterest = {};
+    
+    // First pass: find highest interest level per company
     data.forEach(row => {
+        const company = row['Jouw bedrijf'];
         const value = row[column];
-        if (value && counts.hasOwnProperty(value)) {
-            counts[value]++;
+        
+        if (!company || !value || !counts.hasOwnProperty(value)) return;
+        
+        // If this is the first response from this company, or if this response has a higher interest level
+        if (!companyHighestInterest[company] || 
+            interestLevels.indexOf(value) < interestLevels.indexOf(companyHighestInterest[company])) {
+            companyHighestInterest[company] = value;
         }
     });
+    
+    // Second pass: count only the highest interest level for each company
+    for (const company in companyHighestInterest) {
+        const highestInterest = companyHighestInterest[company];
+        counts[highestInterest]++;
+    }
     
     return counts;
 }

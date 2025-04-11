@@ -238,26 +238,26 @@ function renderChallengesTable(data) {
                     <tr>
                         <td>${challenge.name}</td>
                         <td>
-                            ${challenge.interestCounts['Sterke, concrete interesse']} 
                             <span class="percentage-tooltip" ${storeCompanyData(strongInterestCompanies)}>
+                            ${challenge.interestCounts['Sterke, concrete interesse']} 
                                 (${Math.round(challenge.interestCounts['Sterke, concrete interesse'] / challenge.totalResponses * 100)}%)
                             </span>
                         </td>
                         <td>
-                            ${challenge.interestCounts['Redelijke interesse']} 
                             <span class="percentage-tooltip" ${storeCompanyData(reasonableInterestCompanies)}>
+                            ${challenge.interestCounts['Redelijke interesse']} 
                                 (${Math.round(challenge.interestCounts['Redelijke interesse'] / challenge.totalResponses * 100)}%)
                             </span>
                         </td>
                         <td>
-                            ${challenge.interestCounts['Vage interesse']} 
                             <span class="percentage-tooltip" ${storeCompanyData(vagueInterestCompanies)}>
+                            ${challenge.interestCounts['Vage interesse']} 
                                 (${Math.round(challenge.interestCounts['Vage interesse'] / challenge.totalResponses * 100)}%)
                             </span>
                         </td>
                         <td>
-                            ${challenge.interestCounts['Niets over gehoord']} 
                             <span class="percentage-tooltip" ${storeCompanyData(nothingHeardCompanies)}>
+                            ${challenge.interestCounts['Niets over gehoord']} 
                                 (${Math.round(challenge.interestCounts['Niets over gehoord'] / challenge.totalResponses * 100)}%)
                             </span>
                         </td>

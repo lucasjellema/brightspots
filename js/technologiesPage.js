@@ -238,26 +238,27 @@ function renderTechnologiesTable(data) {
                     <tr>
                         <td>${tech.name}</td>
                         <td>
-                            ${tech.interestCounts['Sterke, concrete interesse']} 
                             <span class="percentage-tooltip" ${storeCompanyData(strongInterestCompanies)}>
+                            <span class="percentage-tooltip" ${storeCompanyData(strongInterestCompanies)}>
+                            ${tech.interestCounts['Sterke, concrete interesse']} 
                                 (${Math.round(tech.interestCounts['Sterke, concrete interesse'] / tech.totalResponses * 100)}%)
                             </span>
                         </td>
                         <td>
-                            ${tech.interestCounts['Redelijke interesse']} 
                             <span class="percentage-tooltip" ${storeCompanyData(reasonableInterestCompanies)}>
+                            ${tech.interestCounts['Redelijke interesse']} 
                                 (${Math.round(tech.interestCounts['Redelijke interesse'] / tech.totalResponses * 100)}%)
                             </span>
                         </td>
                         <td>
-                            ${tech.interestCounts['Vage interesse']} 
                             <span class="percentage-tooltip" ${storeCompanyData(vagueInterestCompanies)}>
+                            ${tech.interestCounts['Vage interesse']} 
                                 (${Math.round(tech.interestCounts['Vage interesse'] / tech.totalResponses * 100)}%)
                             </span>
                         </td>
                         <td>
-                            ${tech.interestCounts['Niets over gehoord']} 
                             <span class="percentage-tooltip" ${storeCompanyData(nothingHeardCompanies)}>
+                            ${tech.interestCounts['Niets over gehoord']} 
                                 (${Math.round(tech.interestCounts['Niets over gehoord'] / tech.totalResponses * 100)}%)
                             </span>
                         </td>
