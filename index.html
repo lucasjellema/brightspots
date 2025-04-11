@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bright Spots Survey Results</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script type="module" src="js/app.js" defer></script>
+    <script type="module" src="js/companyPage.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>Bright Spots Survey Results</h1>
+        <nav id="main-nav">
+            <ul>
+                <li><a href="#" data-page="overview" class="active">Overview</a></li>
+                <li><a href="#" data-page="challenges">Challenges & Themes</a></li>
+                <li><a href="#" data-page="technologies">Technologies & Concepts</a></li>
+                <li><a href="#" data-page="products">Products & Suppliers</a></li>
+                <li><a href="#" data-page="company">Company Responses</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="overview" class="page active">
+            <h2>Bright Spots Survey Overview</h2>
+            
+            <div class="introduction">
+                <p>Insights from the breadth of the Conclusion ecosystem into new demand from customers: what do we notice interest in, what new challenges, technology, concepts, suppliers are our customers working on or want to work with? And what developments do we ourselves see? With the information we gather this way, we hope to get a picture of new and evolving demand. We can then see whether our portfolio can handle that demand and, if not, whether we see the potential (and maybe even inevitability) of the demand and then start defining an action to do something for it. That could be a new proposition from one or more companies and also possibly trigger M&A activity.</p>
+            </div>
+            
+            <div class="dashboard">
+                <div class="card">
+                    <h3>Total Responses</h3>
+                    <div id="total-responses" class="metric">Loading...</div>
+                </div>
+                <div class="card">
+                    <h3>Companies Represented</h3>
+                    <div id="companies-count" class="metric">Loading...</div>
+                </div>
+                <div class="card">
+                    <h3>Survey Period</h3>
+                    <div id="survey-period" class="metric">Loading...</div>
+                </div>
+            </div>
+            <div class="chart-container">
+                <h3>Top Challenges by Interest Level</h3>
+                <canvas id="top-challenges-chart"></canvas>
+            </div>
+            <div class="word-cloud-container">
+                <h3>Word Cloud: Customer Themes</h3>
+                <div id="word-cloud-container"></div>
+            </div>
+            <div class="chart-container">
+                <!-- New Customer Themes will be populated by JavaScript -->
+            </div>
+            <div class="chart-container">
+                <!-- Emerging Tech/Vendor/Product data will be populated by JavaScript -->
+            </div>
+        </section>
+
+        <section id="challenges" class="page">
+            <h2>Challenges & Themes</h2>
+            <div class="chart-container">
+                <canvas id="challenges-chart"></canvas>
+            </div>
+            <div class="themes-section">
+                <h3>New Customer Themes</h3>
+                <div id="customer-themes-container" class="themes-container"></div>
+            </div>
+            <div id="challenges-table" class="data-table">
+                <!-- Table will be populated by JavaScript -->
+            </div>
+        </section>
+
+        <section id="technologies" class="page">
+            <h2>Technologies & Concepts</h2>
+            <div class="chart-container">
+                <canvas id="technologies-chart"></canvas>
+            </div>
+            <div class="themes-section">
+                <h3>Emerging Technologies, Vendors & Products</h3>
+                <div id="emerging-tech-container" class="themes-container"></div>
+            </div>
+            <div id="technologies-table" class="data-table">
+                <!-- Table will be populated by JavaScript -->
+            </div>
+        </section>
+
+        <section id="products" class="page">
+            <h2>Products & Suppliers</h2>
+            <div class="chart-container">
+                <canvas id="products-chart"></canvas>
+            </div>
+            <div id="products-table" class="data-table">
+                <!-- Table will be populated by JavaScript -->
+            </div>
+        </section>
+
+        <section id="company" class="page">
+            <h2>Company Responses</h2>
+            <div class="filters">
+                <label for="company-selector">Select a company:</label>
+                <select id="company-selector">
+                    <option value="">-- Select a company --</option>
+                    <!-- Company options will be populated by JavaScript -->
+                </select>
+            </div>
+            <div id="company-details" class="company-details">
+                <!-- Will be populated when a company is selected -->
+            </div>
+            <div id="company-responses" class="data-table">
+                <!-- Table will be populated by JavaScript -->
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Bright Spots Survey</p>
+    </footer>
+
+    <!-- Load Chart.js from CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script type="module" src="js/wordCloud.js"></script>
+</body>
+</html>
