@@ -5,6 +5,7 @@ import { renderChallenges } from './challengesPage.js';
 import { renderTechnologies } from './technologiesPage.js';
 import { renderProducts } from './productsPage.js';
 import { renderCompanyPage } from './companyPage.js';
+import { renderSearchPage } from './searchPage.js';
 
 // Global state
 let surveyData = null;
@@ -23,6 +24,7 @@ async function initApp() {
         renderTechnologies(processedData);
         renderProducts(processedData);
         renderCompanyPage(processedData);
+        renderSearchPage(processedData);
         
         // Set up navigation
         setupNavigation();
