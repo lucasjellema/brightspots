@@ -251,20 +251,75 @@ canvas {
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-table {
+.data-table table {
     width: 100%;
     border-collapse: collapse;
+    margin-top: 20px;
 }
 
-th, td {
-    padding: 0.75rem;
+.data-table th,
+.data-table td {
+    padding: 10px;
     text-align: left;
-    border-bottom: 1px solid var(--border-color);
+    border-bottom: 1px solid #ddd;
 }
 
-th {
-    background-color: var(--primary-color);
-    color: white;
+.data-table th {
+    background-color: #f5f5f5;
+    font-weight: bold;
+}
+
+.data-table tr:hover {
+    background-color: #f9f9f9;
+}
+
+/* Tooltip styles */
+.percentage-tooltip {
+    cursor: help;
+    color: #3498db;
+    font-weight: bold;
+    position: relative;
+    white-space: nowrap;
+}
+
+.percentage-tooltip:hover {
+    text-decoration: underline;
+}
+
+/* Custom tooltip container */
+.custom-tooltip {
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    max-width: 300px;
+    display: none;
+    font-size: 14px;
+}
+
+.custom-tooltip.visible {
+    display: block;
+}
+
+/* Company links in tooltips */
+.company-link {
+    display: block;
+    padding: 5px 0;
+    color: #3498db;
+    text-decoration: none;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.company-link:last-child {
+    border-bottom: none;
+}
+
+.company-link:hover {
+    text-decoration: underline;
+    background-color: #f9f9f9;
 }
 
 tr:nth-child(even) {
