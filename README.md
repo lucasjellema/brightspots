@@ -10,7 +10,8 @@ A static web application to visualize and explore findings from the Bright Spots
 - **Products & Suppliers**: Insights into products and suppliers mentioned in the survey
 - **Company-Specific Views**: Detailed breakdown of responses by company
 - **Word Cloud Visualization**: Visual representation of frequently mentioned customer themes
-- **Interactive Tooltips**: Hover over charts to see detailed company information
+- **Interactive Tooltips**: Hover over percentage values to see and navigate to specific companies
+- **Global Search**: Search across all survey data and navigate directly to company-specific views
 - **External Data Integration**: Support for loading additional data via URL parameter
 - **Responsive Design**: Works on desktop and mobile devices
 
@@ -28,9 +29,12 @@ A static web application to visualize and explore findings from the Bright Spots
 │   ├── technologiesPage.js # Technologies page rendering
 │   ├── productsPage.js     # Products page rendering
 │   ├── companyPage.js      # Company-specific page rendering
+│   ├── searchPage.js       # Global search functionality
 │   └── wordCloud.js        # Word cloud generation and rendering
-└── data/
-    └── brightspots.csv     # Survey data in CSV format
+├── data/
+│   └── brightspots.csv     # Survey data in CSV format
+├── ARCHITECTURE.md         # Detailed architecture documentation
+└── GITHUB_PUBLISHING_GUIDE.md # Guide for publishing to GitHub Pages
 ```
 
 ## Data Integration
@@ -41,6 +45,20 @@ The application can load data from one of two possible sources:
 2. **External URL**: If the `datafilePAR` query parameter is provided, the application will exclusively load data from that URL, ignoring the local file
 
 Example: `http://your-server/index.html?datafilePAR=https://example.com/external-data.csv`
+
+## Key Features in Detail
+
+### Interactive Tooltips
+When hovering over percentage values in data tables across the application, tooltips display the specific companies that contributed to that data point. These tooltips allow direct navigation to company-specific views by clicking on any company name.
+
+### Global Search
+The search functionality allows users to find specific terms across all survey data. Search results show:
+- Which company mentioned the search term
+- In which category (Challenge, Technology, or Product) it was mentioned
+- The exact field and value where the match was found
+- Highlighted search terms for easy identification
+
+Users can click on company names in search results to navigate directly to that company's detailed page.
 
 ## Setup
 

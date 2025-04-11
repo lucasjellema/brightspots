@@ -14,6 +14,8 @@ The Bright Spots Survey Visualization is a client-side web application that proc
 - Word cloud visualization for text analysis
 - Dynamic content rendering
 - Support for combining data from multiple sources
+- Global search functionality with highlighted results
+- Interactive tooltips with clickable company names
 
 ## 2. Architecture Design
 
@@ -49,6 +51,7 @@ The application follows a modular architecture with clear separation of concerns
 - Parses CSV data into structured JavaScript objects
 - Processes and transforms data for visualization
 - Extracts metrics and insights from raw data
+- Organizes data by company, challenge, technology, and product
 - Combines data from multiple sources when available
 
 ### 3.2 View Modules
@@ -82,7 +85,14 @@ The application follows a modular architecture with clear separation of concerns
 - Renders interest levels for each category
 - Displays company-specific themes and comments
 
-#### 3.2.6 wordCloud.js
+#### 3.2.6 searchPage.js
+- Implements global search functionality across all survey data
+- Processes search queries and displays matching results
+- Highlights search terms in results for easy identification
+- Provides company navigation from search results
+- Categorizes search results by data type (Challenge, Technology, Product)
+
+#### 3.2.7 wordCloud.js
 - Processes text data to extract meaningful words
 - Filters out stop words and common terms
 - Calculates word frequencies
@@ -127,6 +137,13 @@ The application can combine data from:
 - Local CSV file (default source)
 - External URL specified via query parameter
 
+### 5.6 Search Functionality
+The application provides global search functionality with:
+- Search query processing
+- Highlighted search results
+- Company navigation from search results
+- Categorized search results by data type
+
 ## 6. User Interface Components
 
 ### 6.1 Navigation
@@ -151,3 +168,6 @@ The application can combine data from:
 - Comparative analysis between companies
 - Time-based trend analysis
 - Backend integration for dynamic data loading
+- Enhanced search with filters and advanced query options
+- User-customizable dashboards
+- Saved searches and favorites
